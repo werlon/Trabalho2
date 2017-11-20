@@ -90,7 +90,19 @@ namespace Trabalho2.Views
             _compra = Lista.SelectedItem as Compra;
             if (_compra != null)
             {
-                await DisplayAlert("Compra " + _compra.Id, "Implementar adicão de pedidos na compra.", "OK");
+                //await Navigation.PushAsync(new ListaPedidosPage(_compra.Id));
+
+                await DisplayAlert("Compra " + _compra.Id, "Não consegui fazer funcionar o Picker para Implementar adição de pedidos na compra.", "OK");
+                //direcionar para pagina de adicionar produtos passando a compra
+            }
+        }
+
+        private void VerEnd_Clicked(object sender, EventArgs e)
+        {
+            _compra = Lista.SelectedItem as Compra;
+            if (_compra != null)
+            {
+                Navigation.PushAsync(new MostrarEnderecoPage(_compra.CepEndereco));
                 //direcionar para pagina de adicionar produtos passando a compra
             }
         }
@@ -109,5 +121,7 @@ namespace Trabalho2.Views
             CepEndereco.Text = "";
             _compra = null;
         }
+
+
     }
 }

@@ -8,19 +8,14 @@ namespace Trabalho2
     {
         public MainPage()
         {
-            Page itemsPage, listaProdutosPage, listaComprasPage, aboutPage = null;
+            Page listaProdutosPage, listaComprasPage, aboutPage = null;
 
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    itemsPage = new NavigationPage(new ItemsPage())
-                    {
-                        Title = "Browse"
-                    };
-
                     aboutPage = new NavigationPage(new AboutPage())
                     {
-                        Title = "About"
+                        Title = "Trabalho 2"
                     };
 
                     listaProdutosPage = new NavigationPage(new ListaProdutosPage())
@@ -33,20 +28,14 @@ namespace Trabalho2
                         Title = "Compras"
                     };
 
-                    itemsPage.Icon = "tab_feed.png";
                     aboutPage.Icon = "tab_about.png";
                     listaProdutosPage.Icon = "tab_feed.png";
                     listaComprasPage.Icon = "tab_feed.png";
                     break;
                 default:
-                    itemsPage = new ItemsPage()
-                    {
-                        Title = "Browse"
-                    };
-
                     aboutPage = new AboutPage()
                     {
-                        Title = "About"
+                        Title = "Trabalho 2"
                     };
 
                     listaProdutosPage = new ListaProdutosPage()
@@ -60,8 +49,7 @@ namespace Trabalho2
                     };
                     break;
             }
-
-            Children.Add(itemsPage);
+            
             Children.Add(aboutPage);
             Children.Add(listaProdutosPage);
             Children.Add(listaComprasPage);

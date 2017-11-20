@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trabalho2.Views.ListaPedidosPage">
-    
-    
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
+             x:Class="Trabalho2.Views.ListaPedidosPage"
+             x:Name="BrowserListaPedidosPage"
+              Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label x:Name="NumeroCompra"/>
+            </StackLayout>
             
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
+        
+            <StackLayout>
+                <Picker x:Name="ListaProdutos" Title="Produtos">
+                    
+                </Picker>
+            
+                <Entry x:Name="TQuantidade" Placeholder="Qtd Inteiro. ex. 5" Keyboard="Numeric"></Entry>
+
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Button x:Name="Adicionar" Text="Adicionar" Clicked="Adicionar_Clicked"></Button>
+                    <Button x:Name="Remover" Text="Remover" Clicked="Remover_Clicked"></Button>
+                
+                </StackLayout>
+
+            
+
+                    <ListView x:Name="Lista"></ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
     
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+
 </ContentPage>

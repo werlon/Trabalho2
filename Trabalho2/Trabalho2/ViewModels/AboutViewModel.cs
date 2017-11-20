@@ -9,11 +9,9 @@ namespace Trabalho2
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "Sobre o Trabalho";
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
+           
         }
-
-        public ICommand OpenWebCommand { get; }
     }
 }

@@ -13,33 +13,90 @@ namespace Trabalho2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaPedidosPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
 
-        public ListaPedidosPage()
+        private Pedido _pedido = null;
+        private int IdDessaCompra = 0;
+
+        public ListaPedidosPage(int IdDaCompra)
         {
             InitializeComponent();
+            NumeroCompra.Text = IdDaCompra.ToString();
+            IdDessaCompra = IdDaCompra;
+            CarregarPedidos();
 
-            Items = new ObservableCollection<string>
+        }
+
+        private void CarregarPicker() {
+            //picker dos produtos
+            using (var dados = new ProdutoRepository())
             {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
+                ListaProdutos.ItemsSource = dados.Listar().ToList();
+            }
+        }
+
+
+
+        private void CarregarPedidos()
+        {
+            if (IdDessaCompra > 0)
+            {
+                using (var dados = new PedidoRepository())
+                {
+                    Lista.ItemsSource = dados.ListarPorIdDaCompra(IdDessaCompra);
+                }
+            }
+        }
+
+        private void Adicionar_Clicked(object sender, EventArgs e)
+        {
+            Produto produto = ListaProdutos.SelectedItem as Produto;
+            var pedido = new Pedido
+            {
+                CompraId = IdDessaCompra,
+                ProdutoId = produto.Id,
+                Quantidade = int.Parse(TQuantidade.Text),
+                Total = (int.Parse(TQuantidade.Text) * produto.Valor)
             };
 
-            MyListView.ItemsSource = Items;
+            using (var dados = new PedidoRepository())
+            {
+                if(TQuantidade != null && ListaProdutos.SelectedItem != null)
+                {
+                    _pedido = new Pedido
+                    {
+                        CompraId = IdDessaCompra,
+                        ProdutoId = produto.Id,
+                        Quantidade = int.Parse(TQuantidade.Text),
+                        Total = (int.Parse(TQuantidade.Text) * produto.Valor)
+                    };
+                    dados.Insert(_pedido);
+                }
+                LimparCampos();
+                CarregarPedidos();
+            }
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void Remover_Clicked(object sender, EventArgs e)
         {
-            if (e.Item == null)
-                return;
+            _pedido = Lista.SelectedItem as Pedido;
+            if(_pedido != null)
+            {
+                using(var dados = new PedidoRepository())
+                {
+                    dados.Delete(_pedido);
+                    LimparCampos();
+                    CarregarPedidos();
+                }
+            }
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
         }
+
+        private void LimparCampos() {
+            TQuantidade.Text = "";
+            CarregarPicker();
+            _pedido = null;
+        }
+
+    
     }
 }

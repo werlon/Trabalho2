@@ -15,6 +15,7 @@
                 <Button x:Name="Excluir" Text="Excluir" Clicked="Excluir_Clicked"></Button>
                 <Button x:Name="Editar" Text="Editar" Clicked="Editar_Clicked"></Button>
                 <Button x:Name="AddProduto" Text="Adicionar ao Pedido" Clicked="AddProduto_Clicked"></Button>
+                <Button x:Name="VerEnd" Text="Ver Endereço" Clicked="VerEnd_Clicked"></Button>
             </StackLayout>
 
             <ListView x:Name="Lista"></ListView>

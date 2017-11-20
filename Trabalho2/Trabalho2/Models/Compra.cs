@@ -13,22 +13,9 @@ namespace Trabalho2.Models
         [MaxLength(10)]
         public string CepEndereco { get; set; }
 
-        private string endereco { get; set; }
-
         public override string ToString()
         {
-            string endereco = "Faltou CEP";
-            if(CepEndereco != null)
-            {
-                buscaEndereco();
-            }
             return string.Format("Id=[{0}], Cliente={1}, Endereco={2}", Id, Cliente, CepEndereco);
-        }
-
-        private async void buscaEndereco()
-        {
-            Cep cep = await Services.ConsultaCepService.BuscaCep(CepEndereco);
-            endereco = cep.ToString();
         }
 
     }

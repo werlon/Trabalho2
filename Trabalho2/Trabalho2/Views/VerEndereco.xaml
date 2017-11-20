@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trabalho2.Views.VerEndereco"
+          >
+  <ViewCell.View>
+      <StackLayout>
+          <Label Text="Endereço pelo cep" />
+            <Label Text="CEP">
+                <Entry x:Name="Tcep" Placeholder="CEP"></Entry>
+            </Label>
+            <Label Text="Logradouro">
+                <Entry x:Name="Tlogradouro"></Entry>
+            </Label>
+            <Label Text="Bairro">
+                <Entry x:Name="Tbairro"></Entry>
+            </Label>
+            <Label Text="Cidade">
+                <Entry x:Name="Tcidade"></Entry>
+            </Label>
+            <Label Text="UF">
+                <Entry x:Name="Tuf"></Entry>
+            </Label>
+
+            <Label x:Name="lblResultado"/>
+
+        </StackLayout>
+  </ViewCell.View>
+</ViewCell>

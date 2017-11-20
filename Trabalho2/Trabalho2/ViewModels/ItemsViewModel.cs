@@ -14,7 +14,7 @@ namespace Trabalho2
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Trabalho 2";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

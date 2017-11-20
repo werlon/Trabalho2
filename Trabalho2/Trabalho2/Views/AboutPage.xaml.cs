@@ -9,6 +9,7 @@ namespace Trabalho2
         public AboutPage()
         {
             InitializeComponent();
+            
         }
     }
 }
