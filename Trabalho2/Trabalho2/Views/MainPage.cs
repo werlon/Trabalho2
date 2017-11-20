@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Trabalho2.Views;
 using Xamarin.Forms;
 
 namespace Trabalho2
@@ -8,7 +8,7 @@ namespace Trabalho2
     {
         public MainPage()
         {
-            Page itemsPage, aboutPage = null;
+            Page itemsPage, listaProdutosPage, listaComprasPage, aboutPage = null;
 
             switch (Device.RuntimePlatform)
             {
@@ -22,8 +22,21 @@ namespace Trabalho2
                     {
                         Title = "About"
                     };
+
+                    listaProdutosPage = new NavigationPage(new ListaProdutosPage())
+                    {
+                        Title = "Produtos"
+                    };
+
+                    listaComprasPage = new NavigationPage(new ListaComprasPage())
+                    {
+                        Title = "Compras"
+                    };
+
                     itemsPage.Icon = "tab_feed.png";
                     aboutPage.Icon = "tab_about.png";
+                    listaProdutosPage.Icon = "tab_feed.png";
+                    listaComprasPage.Icon = "tab_feed.png";
                     break;
                 default:
                     itemsPage = new ItemsPage()
@@ -35,11 +48,23 @@ namespace Trabalho2
                     {
                         Title = "About"
                     };
+
+                    listaProdutosPage = new ListaProdutosPage()
+                    {
+                        Title = "Produtos"
+                    };
+
+                    listaComprasPage = new ListaComprasPage()
+                    {
+                        Title = "Compras"
+                    };
                     break;
             }
 
             Children.Add(itemsPage);
             Children.Add(aboutPage);
+            Children.Add(listaProdutosPage);
+            Children.Add(listaComprasPage);
 
             Title = Children[0].Title;
         }
