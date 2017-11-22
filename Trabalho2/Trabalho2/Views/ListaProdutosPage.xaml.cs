@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Trabalho2.Models;
+﻿using Trabalho2.Models;
+using Trabalho2.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,15 +8,19 @@ namespace Trabalho2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaProdutosPage : ContentPage
     {
-        private Produto _produto = null;
+       // private Produto _produto = null;
+
+        public Produto ProdutoEdicao { get; set; }
 
         public ListaProdutosPage()
         {
             InitializeComponent();
 
-            ListarTodos();
-        }
+            BindingContext = new ProdutosViewModel();
 
+            //ListarTodos();
+        }
+        /*
         private void Salvar_Clicked(object sender, EventArgs e)
         {
             var produto = new Produto
@@ -96,7 +95,7 @@ namespace Trabalho2.Views
             {
                 Lista.ItemsSource = dados.Listar();
             }
-        }
+        } */
 
     }
 }

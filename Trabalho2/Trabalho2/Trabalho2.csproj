@@ -50,6 +50,7 @@
     <Compile Include="Services\ConsultaCepService.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ProdutosViewModel.cs" />
     <Compile Include="Views\ListaComprasPage.xaml.cs">
       <DependentUpon>ListaComprasPage.xaml</DependentUpon>
     </Compile>

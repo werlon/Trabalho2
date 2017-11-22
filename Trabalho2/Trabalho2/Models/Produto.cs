@@ -3,7 +3,7 @@
 namespace Trabalho2.Models
 {
     [Table("Produto")]
-    class Produto
+    public class Produto
     {
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }

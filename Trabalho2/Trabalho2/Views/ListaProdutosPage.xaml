@@ -3,20 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trabalho2.Views.ListaProdutosPage"
               Title="{Binding Title}"
-             x:Name="BrowseListaProdutosPage">
+             x:Name="BrowseListaProdutosPage"
+             xmlns:convert="clr-namespace:assembly=Trabalho2">
 
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="Nome" Placeholder="Nome do poduto"></Entry>
-            <Entry x:Name="Valor" Placeholder="Valor ex. 10,25" Keyboard="Numeric"></Entry>
+            <Entry x:Name="Nome"  Text="{Binding ProdutoAtual.Nome}" Placeholder="Nome do poduto"></Entry>
+            <Entry x:Name="Valor" Text="{Binding ProdutoAtual.Valor}" Placeholder="Valor ex. 10,25" Keyboard="Numeric"></Entry>
 
             <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <Button x:Name="Salvar" Text="Salvar" Clicked="Salvar_Clicked"></Button>
-                <Button x:Name="Excluir" Text="Excluir" Clicked="Excluir_Clicked"></Button>
-                <Button x:Name="Editar" Text="Editar" Clicked="Editar_Clicked"></Button>
+                <Button x:Name="Salvar" Text="Salvar" Command="{Binding SalvarProdutoCommand}"></Button>
             </StackLayout>
 
-            <ListView x:Name="Lista"></ListView>
+            <ListView x:Name="Produtos" ItemsSource="{Binding Produtos}" HasUnevenRows="True" Grid.Row="2"></ListView>
+            <ListView.Itemtemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Excluir" Command="{Binding Source={x:Reference ListaProdutosPage}, Path=BindingContext.ExcluirProdutoCommand}" CommandParameter="{Binding .}"></MenuItem>
+                            <MenuItem Text="Editar" Command="{Binding Source={x:Reference ListaProdutosPage}, Path=BindingContext.EditarProdutoCommand}" CommandParameter="{Binding .}"></MenuItem>
+                        </ViewCell.ContextActions>
+                        
+                        <ViewCell.View>
+                            <Grid ColumnSpacing="0" RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nome}"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Valor}"/>
+                            </Grid>
+                        </ViewCell.View>
+                        
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.Itemtemplate>
 
         </StackLayout>
     </ContentPage.Content>
